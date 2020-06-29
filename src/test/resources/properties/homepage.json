@@ -1,0 +1,36 @@
+{
+  "page": {
+    "name": "Home Page",
+    "url": "/",
+    "observable": {
+      "name": "Title",
+      "contents": [
+        {
+          "en_US": "We're Glad You're Here!"
+        },
+        {
+          "es_MX": "Spanish Equiv!"
+        }
+      ],
+      "locator": {
+        "by": "xpath",
+        "text": "//"
+      }
+    },
+    "interactable": {
+      "name": "Login Field",
+      "contents": [
+        {
+          "en_US": "Username"
+        },
+        {
+          "es_MX": "Nombre"
+        }
+      ],
+      "locator": {
+        "by": "id",
+        "text": "acadia.login"
+      }
+    }
+  }
+}

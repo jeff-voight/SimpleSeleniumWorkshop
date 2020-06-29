@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Everything Suite" verbose="1">
+    <groups>
+        <run>
+            <exclude name="windows"/>
+            <exclude name="macos"/>
+            <exclude name="android"/>
+            <exclude name="ios"/>
+        </run>
+    </groups>
+    <listeners>
+        <listener class-name="org.voight.listeners.SuiteListener"/>
+        <listener class-name="org.voight.listeners.TestListener"/>
+    </listeners>
+    <test name="Everything">
+        <packages>
+            <package name="org.voight.*"/>
+        </packages>
+    </test>
+</suite>

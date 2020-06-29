@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Unit Suite" verbose="1">
+    <groups>
+        <run>
+            <exclude name="windows"/>
+            <exclude name="macos"/>
+            <exclude name="android"/>
+            <exclude name="ios"/>
+            <exclude name="ui"/>
+        </run>
+    </groups>
+    <listeners>
+        <listener class-name="org.voight.listeners.SuiteListener"/>
+        <listener class-name="org.voight.listeners.TestListener"/>
+    </listeners>
+    <test name="Regression">
+        <packages>
+            <package name="org.voight.*">
+                <exclude name="org.voight.devices"/>
+                <exclude name="org.voight.steps"/>
+            </package>
+        </packages>
+    </test>
+</suite>
