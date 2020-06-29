@@ -2,11 +2,7 @@ pipeline {
     agent any
     stages {
         stage('Build'){
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                }
-            }
+            agent any
             steps {
                 sh 'mkdir -p repo'
                 sh 'cp -r ${WORKSPACE}/* repo'
