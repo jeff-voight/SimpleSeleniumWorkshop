@@ -4,7 +4,7 @@ podTemplate(containers: [
     node() {
         stage('Build') {
             container('maven') {
-                stage {
+                stage('Build maven project') {
                     sh 'mkdir -p /tmp/repo'
                     sh 'cp -r ${WORKSPACE}/* /tmp/repo'
                     sh 'cd /tmp/repo'
