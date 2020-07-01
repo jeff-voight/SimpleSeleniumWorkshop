@@ -1,7 +1,7 @@
 podTemplate(containers: [
         containerTemplate(name: 'maven:3.6.3-jdk-8', ttyEnabled: true, command: 'cat')
 ]) {
-    node(POD_LABEL) {
+    node("jenkins-slave") {
         stage('Build') {
             steps {
                 sh 'mkdir -p /tmp/repo'
