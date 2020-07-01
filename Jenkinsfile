@@ -8,7 +8,7 @@ pipeline {
                 sh 'mkdir -p /tmp/repo'
                 sh 'cp -r ${WORKSPACE}/* /tmp/repo'
                 sh 'cd /tmp/repo'
-                sh '/usr/local/bin/mvn package'
+                sh 'package'
             }
         }
     }
