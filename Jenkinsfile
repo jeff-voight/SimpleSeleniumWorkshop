@@ -4,7 +4,7 @@ podTemplate(label: 'maven', containers: [
     node('maven') {
         stage('Build') {
             container('maven') {
-                stage("git clone"){
+                stage("git clone") {
                     sh 'mkdir -p /tmp/repo'
                     sh 'cd /tmp/repo'
                     sh 'git clone https://github.com/jvoight0205/SimpleSeleniumWorkshop.git/'
