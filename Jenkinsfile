@@ -5,7 +5,7 @@ podTemplate(label: 'maven', containers: [
         stage('Build') {
             container('maven') {
                 stage("git clone") {
-                    sh 'git clone --branch master -depth=1 https://github.com/jvoight0205/SimpleSeleniumWorkshop.git .'
+                    sh 'git clone --branch master --depth=1 https://github.com/jvoight0205/SimpleSeleniumWorkshop.git .'
                 }
                 stage('Build maven project') {
                     sh 'mvn package'
