@@ -9,7 +9,7 @@ podTemplate(label: 'maven', containers: [
                 }
                 stage('Build maven project') {
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
-                        sh ("mvn verify sonar:sonar -Dsonar.host=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
+                        sh ("mvn verify sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
                 }
             }
