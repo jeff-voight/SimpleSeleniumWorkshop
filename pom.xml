@@ -23,7 +23,8 @@
             <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
             <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
             <sonar.coverage.exclusions></sonar.coverage.exclusions>
-            <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut.xml,target/jacoco-it.xml</sonar.coverage.jacoco.xmlReportPaths>
+            <sonar.junit.reportPaths>target/surefire-reports/junitreports,target/failsafe-reports/junitreports</sonar.junit.reportPaths>
+            <sonar.coverage.jacoco.reportPath>target/jacoco-ut.exec,target/jacoco-it.exec</sonar.coverage.jacoco.reportPath>
         </properties>
 
         <build>
@@ -107,7 +108,7 @@
                                 <goal>prepare-agent</goal>
                             </goals>
                             <configuration>
-                                <destFile>${project.build.directory}/jacoco-ut.xml</destFile>
+                                <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
                             </configuration>
                         </execution>
                         <execution>
@@ -117,7 +118,7 @@
                                 <goal>report</goal>
                             </goals>
                             <configuration>
-                                <dataFile>${project.build.directory}/jacoco-ut.xml</dataFile>
+                                <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
                                 <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
                             </configuration>
                         </execution>
@@ -128,7 +129,7 @@
                                 <goal>prepare-agent</goal>
                             </goals>
                             <configuration>
-                                <destFile>${project.build.directory}/jacoco-it.xml</destFile>
+                                <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
                             </configuration>
                         </execution>
                         <execution>
@@ -138,7 +139,7 @@
                                 <goal>report</goal>
                             </goals>
                             <configuration>
-                                <dataFile>${project.build.directory}/jacoco-it.xml</dataFile>
+                                <dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
                                 <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
                             </configuration>
                         </execution>
