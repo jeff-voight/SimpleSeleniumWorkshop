@@ -101,6 +101,11 @@ public class UITestListenerTest {
                 return null;
             }
 
+            @Override
+            public Object[] getFactoryParameters() {
+                return new Object[0];
+            }
+
 
             @Override
             public String getTestName() {
@@ -116,6 +121,21 @@ public class UITestListenerTest {
             @Override
             public ITestContext getTestContext() {
                 return context;
+            }
+
+            @Override
+            public void setTestName(String s) {
+
+            }
+
+            @Override
+            public boolean wasRetried() {
+                return false;
+            }
+
+            @Override
+            public void setWasRetried(boolean b) {
+
             }
 
             @Override

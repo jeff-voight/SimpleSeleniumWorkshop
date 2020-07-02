@@ -137,14 +137,6 @@ public class TestListenerTest {
                     return null;
                 }
 
-                /**
-                 * @deprecated
-                 */
-                @Override
-                public Collection<ITestNGMethod> getInvokedMethods() {
-                    return null;
-                }
-
                 @Override
                 public List<IInvokedMethod> getAllInvokedMethods() {
                     return null;
@@ -358,6 +350,11 @@ public class TestListenerTest {
             }
 
             @Override
+            public Object[] getFactoryParameters() {
+                return new Object[0];
+            }
+
+            @Override
             public String getTestName() {
                 return null;
             }
@@ -370,6 +367,21 @@ public class TestListenerTest {
             @Override
             public ITestContext getTestContext() {
                 return null;
+            }
+
+            @Override
+            public void setTestName(String s) {
+
+            }
+
+            @Override
+            public boolean wasRetried() {
+                return false;
+            }
+
+            @Override
+            public void setWasRetried(boolean b) {
+
             }
 
 

@@ -14,17 +14,23 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-model:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.plexus:plexus-utils:3.2.0" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:cucumber-core:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: info.cukes:cucumber-html:0.2.6" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:cucumber-jvm-deps:1.0.6" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:gherkin:5.0.0" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:tag-expressions:1.1.1" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:cucumber-testng:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:cucumber-picocontainer:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: io.cucumber:cucumber-java:2.4.0" level="project" />
-    <orderEntry type="library" name="Maven: org.picocontainer:picocontainer:2.15" level="project" />
-    <orderEntry type="library" name="Maven: org.testng:testng:6.13.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: io.cucumber:cucumber-java:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-core:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-gherkin:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-gherkin-messages:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:messages:12.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:tag-expressions:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-expressions:10.2.0" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:datatable:3.3.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-plugin:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:docstring:6.1.1" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:html-formatter:6.0.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.testng:testng:7.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.72" level="project" />
+    <orderEntry type="library" name="Maven: com.google.inject:guice:no_aop:4.1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.21" level="project" />
+    <orderEntry type="library" name="Maven: io.cucumber:cucumber-testng:6.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-java:3.141.59" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-api:3.141.59" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-chrome-driver:3.141.59" level="project" />
@@ -48,7 +54,6 @@
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.seleniumhq.selenium:jetty-repacked:9.4.12.v20180830" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.19" level="project" />
     <orderEntry type="library" name="Maven: io.github.bonigarcia:webdrivermanager:3.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
@@ -103,8 +108,8 @@
     <orderEntry type="library" name="Maven: org.objenesis:objenesis:2.6" level="project" />
     <orderEntry type="library" name="Maven: net.bytebuddy:byte-buddy:1.9.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.google.inject:guice:4.2.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: javax.inject:javax.inject:1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: aopalliance:aopalliance:1.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
