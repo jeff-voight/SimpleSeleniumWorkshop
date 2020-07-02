@@ -8,7 +8,7 @@ podTemplate(label: 'maven', containers: [
                     sh 'git clone --branch master --depth=1 https://github.com/jvoight0205/SimpleSeleniumWorkshop.git .'
                 }
                 stage('Build maven project') {
-                    sh 'mvn verify'
+                    sh 'mvn verify sonar:sonar'
                 }
             }
         }
