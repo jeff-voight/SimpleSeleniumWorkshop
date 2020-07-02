@@ -18,9 +18,10 @@
             <!-- SonarQube Properties -->
             <sonar.exclusions></sonar.exclusions>
             <sonar.host.url></sonar.host.url>
+            <sonar.projectKey>SimpleSeleniumWorkshop</sonar.projectKey>
             <sonar.java.source>1.8</sonar.java.source>
             <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
-            <sonar.tests>src/test/java,src/test/resources/features</sonar.tests>
+            <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
             <sonar.coverage.exclusions></sonar.coverage.exclusions>
         </properties>
 
