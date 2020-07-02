@@ -7,271 +7,275 @@
     <artifactId>TestingWorkshop</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-        <packaging>jar</packaging>
+    <packaging>jar</packaging>
 
-        <name>Voight Testing Workshop</name>
+    <name>Voight Simple Testing Workshop</name>
+    <description>This project is a simple demonstration of Selenium in a Jenkins pipeline.
+    This is an example of a website testing package that would run against candidate
+    builds and pull requests in a CI/CD pipeline.</description>
 
-        <properties>
-            <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-            <!-- SonarQube Properties -->
-            <sonar.exclusions></sonar.exclusions>
-            <sonar.host.url></sonar.host.url>
-            <sonar.projectKey>SimpleSeleniumWorkshop</sonar.projectKey>
-            <sonar.java.source>1.8</sonar.java.source>
-            <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
-            <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
-            <sonar.coverage.exclusions></sonar.coverage.exclusions>
-            <sonar.junit.reportPaths>target/surefire-reports/junitreports,target/failsafe-reports/junitreports</sonar.junit.reportPaths>
-            <sonar.coverage.jacoco.reportPath>target/jacoco-ut.exec,target/jacoco-it.exec</sonar.coverage.jacoco.reportPath>
-        </properties>
+        <!-- SonarQube Properties -->
+        <sonar.exclusions></sonar.exclusions>
+        <sonar.host.url></sonar.host.url>
+        <sonar.projectKey>SimpleSeleniumWorkshop</sonar.projectKey>
+        <sonar.java.source>1.8</sonar.java.source>
+        <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
+        <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
+        <sonar.coverage.exclusions></sonar.coverage.exclusions>
+        <sonar.junit.reportPaths>target/surefire-reports/junitreports,target/failsafe-reports/junitreports
+        </sonar.junit.reportPaths>
+        <sonar.coverage.jacoco.reportPath>target/jacoco-ut.exec,target/jacoco-it.exec</sonar.coverage.jacoco.reportPath>
+    </properties>
 
-        <build>
-            <plugins>
+    <build>
+        <plugins>
 
-                <!-- Compiler -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                        <showDeprecation>true</showDeprecation>
-                        <compilerArgs>
-                            <arg>-parameters</arg>
-                        </compilerArgs>
-                    </configuration>
-                </plugin>
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
 
-                <!-- Unit Tests -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
-                    <configuration>
-                        <useSystemClassLoader>false</useSystemClassLoader>
-                        <suiteXmlFiles>
-                            <file>src/test/resources/testng.unit.xml</file>
-                            <file>src/test/resources/testng.integration.xml</file>
-                        </suiteXmlFiles>
-                        <properties>
-                            <property>
-                                <name>surefire.testng.verbose</name>
-                                <value>3</value>
-                            </property>
-                            <property>
-                                <name>listener</name>
-                                <value>
-                                    org.voight.listeners.TestListener,org.voight.listeners.SuiteListener,org.voight.listeners.UITestListener
-                                </value>
-                            </property>
-                        </properties>
-                    </configuration>
-                </plugin>
+            <!-- Unit Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <suiteXmlFiles>
+                        <file>src/test/resources/testng.unit.xml</file>
+                        <file>src/test/resources/testng.integration.xml</file>
+                    </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>surefire.testng.verbose</name>
+                            <value>3</value>
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>
+                                org.voight.listeners.TestListener,org.voight.listeners.SuiteListener,org.voight.listeners.UITestListener
+                            </value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
 
-                <!-- Generate Parallel Cucumber -->
+            <!-- Generate Parallel Cucumber -->
 
-                <!-- Cucumber Tests -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.20.1</version>
-                    <executions>
-                        <execution>
-                            <id>integration-test</id>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <properties>
-                            <property>
-                                <name>dataproviderthreadcount</name>
-                                <value>6</value>
-                            </property>
-                        </properties>
-                    </configuration>
-                </plugin>
+            <!-- Cucumber Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20.1</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <properties>
+                        <property>
+                            <name>dataproviderthreadcount</name>
+                            <value>6</value>
+                        </property>
+                    </properties>
+                </configuration>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.4</version>
-                    <executions>
-                        <execution>
-                            <id>pre-unit-test</id>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                            <configuration>
-                                <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>post-unit-test</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
-                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>pre-integration-test</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                            <configuration>
-                                <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>post-integration-test</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                            <configuration>
-                                <dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
-                                <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+                <executions>
+                    <execution>
+                        <id>pre-unit-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco-ut.exec</dataFile>
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pre-integration-test</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>${project.build.directory}/jacoco-ut.exec</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>post-integration-test</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <configuration>
-                        <show>private</show>
-                        <nohelp>true</nohelp>
-                        <additionalparam>-Xdoclint:none</additionalparam>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-        <reporting>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <configuration>
-                        <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
-                        <show>public</show>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+                    <show>public</show>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
-        <dependencies>
-            <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-model</artifactId>
-                <version>3.6.1</version>
-            </dependency>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>3.6.1</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-java</artifactId>
-                <version>6.1.1</version>
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+        </dependency>
 
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>7.1.0</version>
-            </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.1.0</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-testng</artifactId>
-                <version>6.1.1</version>
-            </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.1.1</version>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>3.141.59</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-server</artifactId>
-                <version>3.141.59</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-            <dependency>
-                <groupId>io.github.bonigarcia</groupId>
-                <artifactId>webdrivermanager</artifactId>
-                <version>3.6.2</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.6.2</version>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
-            <dependency>
-                <groupId>io.appium</groupId>
-                <artifactId>java-client</artifactId>
-                <version>7.2.0</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.2.0</version>
+        </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-nop</artifactId>
-                <version>1.7.28</version>
-            </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>1.7.28</version>
+        </dependency>
 
-            <dependency>
-                <groupId>com.paulhammant</groupId>
-                <artifactId>ngwebdriver</artifactId>
-                <version>1.1.4</version>
-            </dependency>
+        <dependency>
+            <groupId>com.paulhammant</groupId>
+            <artifactId>ngwebdriver</artifactId>
+            <version>1.1.4</version>
+        </dependency>
 
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>htmlunit-driver</artifactId>
-                <version>2.36.0</version>
-            </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>htmlunit-driver</artifactId>
+            <version>2.36.0</version>
+        </dependency>
 
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>2.27.0</version>
-            </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.27.0</version>
+        </dependency>
 
-            <dependency>
-                <groupId>net.bytebuddy</groupId>
-                <artifactId>byte-buddy</artifactId>
-                <version>1.9.10</version>
-            </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.9.10</version>
+        </dependency>
 
-            <dependency>
-                <groupId>com.google.inject</groupId>
-                <artifactId>guice</artifactId>
-                <version>4.2.2</version>
-                <scope>test</scope>
-            </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.2.2</version>
+            <scope>test</scope>
+        </dependency>
 
-            <dependency>
-                <groupId>com.googlecode.json-simple</groupId>
-                <artifactId>json-simple</artifactId>
-                <version>1.1.1</version>
-            </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
-        </dependencies>
+    </dependencies>
 
 </project>
