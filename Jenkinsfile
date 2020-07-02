@@ -12,7 +12,7 @@ podTemplate(label: 'maven', containers: [
                         SONAR_LOGIN =  credentials('sonartoken')
                         SONAR_HOST = credentials('sonarhost')
                     }
-                    sh ("mvn verify sonar:sonar -Dsonar.host=$SONAR_HOST_PSW -Dsonar.login=$SONAR_LOGIN_PSW")
+                    sh ("mvn verify sonar:sonar -Dsonar.host=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                 }
             }
         }
