@@ -4,7 +4,6 @@ podTemplate(label: 'maven', containers: [
     environment {
         SONAR_LOGIN =  credentials('sonartoken')
         SONAR_HOST = credentials('sonarhost')
-
     }
     node('maven') {
         stage('Build') {
