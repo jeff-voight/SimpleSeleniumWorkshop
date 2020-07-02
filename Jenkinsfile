@@ -8,11 +8,9 @@ podTemplate(label: 'maven', containers: [
                     sh 'git clone --branch master --depth=1 https://github.com/jvoight0205/SimpleSeleniumWorkshop.git .'
                 }
                 stage('Build maven project') {
-                    environment {
-                        SONAR_LOGIN =  credentials('sonartoken')
-                        SONAR_HOST = credentials('sonarhost')
+                    withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
+                        sh ("mvn verify sonar:sonar -Dsonar.host=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
-                    sh ("mvn verify sonar:sonar -Dsonar.host=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                 }
             }
         }
