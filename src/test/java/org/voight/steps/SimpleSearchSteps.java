@@ -36,7 +36,7 @@ public class SimpleSearchSteps {
 
     public SimpleSearchSteps() {
         log.debug("Creating Chrome Browser.");
-        driver = DeviceFactory.getDevice("Chrome");
+        driver = DeviceFactory.getDevice("Firefox");
         wait = new WebDriverWait(driver, timeOut);
     }
 
