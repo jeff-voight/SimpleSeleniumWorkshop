@@ -11,11 +11,11 @@ podTemplate(label: 'maven', containers: [
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
                         sh ("mvn verify sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
-                }
-                post {
-                    always {
-                        junit 'target/failsafe-reports/junitreports/*.xml,target/surefire-reports/junitreports/*.xml'
-                        archiveArtifacts artifacts: 'target/failsafe-reports/*,target/surefire-reports/*', followSymlinks: false
+                    post {
+                        always {
+                            junit 'target/failsafe-reports/junitreports/*.xml,target/surefire-reports/junitreports/*.xml'
+                            archiveArtifacts artifacts: 'target/failsafe-reports/*,target/surefire-reports/*', followSymlinks: false
+                        }
                     }
                 }
             }
