@@ -3,7 +3,7 @@ podTemplate(label: 'maven', containers: [
 ]) {
     environment {
         SONAR_LOGIN =  credentials('sonartoken')
-        SONAR_HOST = ${params.sonarhost}
+        SONAR_HOST = credentials('sonarhost')
 
     }
     node('maven') {
