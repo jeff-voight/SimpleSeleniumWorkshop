@@ -1,12 +1,14 @@
 package org.voight.devices;
 
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class DeviceFactoryTest {
 
-    @Test(groups = {"macos"})
+    @Ignore
+    @Test
     public void testGetOperaDriver() {
         DeviceFactory d = new DeviceFactory();
         RemoteWebDriver opera = d.getDevice("OPERA");
@@ -14,15 +16,16 @@ public class DeviceFactoryTest {
         opera.quit();
     }
 
-    @Test(groups = {"macos"})
+    @Ignore
+    @Test
     public void testGetSafariDriver() {
         DeviceFactory d = new DeviceFactory();
         RemoteWebDriver safari = d.getDevice("SAFARI");
         assert safari != null;
         safari.quit();
     }
-
-    @Test(groups = {"windows"})
+    @Ignore
+    @Test
     public void testGetInternetExplorerDriver() {
         DeviceFactory d = new DeviceFactory();
         RemoteWebDriver ie = d.getDevice("INTERNETEXPLORER");
@@ -46,7 +49,8 @@ public class DeviceFactoryTest {
         firefox.quit();
     }
 
-    @Test(groups = {"android"})
+    @Ignore
+    @Test
     public void testGetAndroidDriver() {
         DeviceFactory d = new DeviceFactory();
         RemoteWebDriver androidDriver = d.getDevice("ANDROID");
