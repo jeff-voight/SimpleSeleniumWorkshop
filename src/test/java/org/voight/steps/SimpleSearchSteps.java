@@ -11,13 +11,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.log4testng.Logger;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class SimpleSearchSteps {
 
-    Logger log = Logger.getLogger(SimpleSearchSteps.class);
+    Logger log = Logger.getLogger("SimpleSearchSteps.class");
     long timeOut = (long) 5.0;
 
     By googleIconBy = By.id("hplogo");
@@ -35,7 +35,7 @@ public class SimpleSearchSteps {
     WebDriverWait wait;
 
     public SimpleSearchSteps() {
-        log.debug("Creating Chrome Browser.");
+        log.fine("Creating Chrome Browser.");
         driver = DeviceFactory.getDevice("Firefox");
         wait = new WebDriverWait(driver, timeOut);
     }
@@ -65,7 +65,7 @@ public class SimpleSearchSteps {
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(googleLogoBy));
         List<WebElement> elements = driver.findElements(googlePagesBy);
-        log.debug("There are " + elements.size() + " (hopefully 1) elements matching page 2");
+        log.fine("There are " + elements.size() + " (hopefully 1) elements matching page 2");
         Assert.assertTrue(elements.size() == 1);
     }
 
@@ -92,7 +92,7 @@ public class SimpleSearchSteps {
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(bingLogoBy));
         List<WebElement> elements = driver.findElements(bingPagesBy);
-        log.debug("There are " + elements.size() + " (hopefully 1) elements matching page 2");
+        log.fine("There are " + elements.size() + " (hopefully 1) elements matching page 2");
         Assert.assertTrue(elements.size() == 1);
     }
 

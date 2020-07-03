@@ -28,7 +28,7 @@
         <sonar.coverage.exclusions></sonar.coverage.exclusions>
         <sonar.junit.reportPaths>target/surefire-reports/junitreports,target/failsafe-reports/junitreports
         </sonar.junit.reportPaths>
-        <sonar.coverage.jacoco.reportPath>target/jacoco-ut.exec,target/jacoco-it.exec</sonar.coverage.jacoco.reportPath>
+        <sonar.coverage.jacoco.xmlReportPaths>target/jacoco-ut.exec,target/jacoco-it.exec</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <build>
@@ -274,6 +274,14 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

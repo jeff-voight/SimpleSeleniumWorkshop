@@ -19,10 +19,10 @@ import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
-import org.testng.log4testng.Logger;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import static io.github.bonigarcia.wdm.DriverManagerType.OPERA;
 
@@ -32,10 +32,10 @@ import static io.github.bonigarcia.wdm.DriverManagerType.OPERA;
  * These values are capitalized to remind you that your choices are limited unless you choose to extend this class.
  */
 public class DeviceFactory {
-    private Logger log = Logger.getLogger(DeviceFactory.class);
+    private Logger log = Logger.getLogger("DeviceFactory.class");
 
     public DeviceFactory() {
-        log.debug("Constructor");
+        log.fine("Constructor");
     }
 
     /**

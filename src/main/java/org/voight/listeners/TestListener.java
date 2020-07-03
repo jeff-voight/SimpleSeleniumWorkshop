@@ -4,10 +4,11 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.log4testng.Logger;
+
+import java.util.logging.Logger;
 
 public class TestListener implements ITestListener {
-    private Logger log = Logger.getLogger(TestListener.class);
+    private Logger log = Logger.getLogger("TestListener.class");
 
 
     public TestListener() {

@@ -2,10 +2,11 @@ package org.voight.listeners;
 
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
-import org.testng.log4testng.Logger;
+
+import java.util.logging.Logger;
 
 public class SuiteListener implements ISuiteListener {
-    Logger log = Logger.getLogger(SuiteListener.class);
+    Logger log = Logger.getLogger("SuiteListener.class");
 
     /**
      * This method is invoked before the SuiteRunner starts.

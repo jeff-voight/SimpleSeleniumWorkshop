@@ -1,7 +1,6 @@
 package org.voight.properties;
 
 import org.voight.exceptions.IVVRuntimeException;
-import org.testng.log4testng.Logger;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,10 +9,11 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class TestingProperties {
     private Properties properties = new Properties();
-    private Logger log = Logger.getLogger(TestingProperties.class);
+    private Logger log = Logger.getLogger("TestingProperties.class");
 
     public TestingProperties(Reader reader) throws IOException {
         properties.load(reader);
@@ -24,7 +24,7 @@ public class TestingProperties {
             Reader reader = new FileReader("src/main/resources/properties/testautomation.properties");
             properties.load(reader);
         } catch (IOException e) {
-            log.fatal("src/main/resources/properties/testautomation.properties not found.", e);
+            log.severe(e.getMessage());
             throw new IVVRuntimeException("Default Properties File not found. You must define a properties file.");
         }
     }
