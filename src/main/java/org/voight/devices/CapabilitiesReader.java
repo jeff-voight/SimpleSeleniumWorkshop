@@ -2,18 +2,18 @@ package org.voight.devices;
 
 import org.voight.properties.TestingProperties;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.log4testng.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CapabilitiesReader {
     protected List<String> arguments;
     private DesiredCapabilities desiredCapabilities;
-    private Logger log = Logger.getLogger(CapabilitiesReader.class);
+    private Logger log = Logger.getLogger("CapabilitiesReader.class");
     private boolean headless = false;
     private boolean isRemote = false;
     private String remoteHub;
@@ -36,21 +36,21 @@ public class CapabilitiesReader {
             Matcher headlessMatcher = headlessPattern.matcher(key);
             Matcher remoteMatcher = remotePattern.matcher(key);
             if (cap.find()) {
-                log.debug("Adding capability " + key + " with value " + capabilitiesMap.get(key));
+                log.fine("Adding capability " + key + " with value " + capabilitiesMap.get(key));
                 desiredCapabilities.setCapability(cap.group(1), capabilitiesMap.get(key));
             }
             if (arg.find()) {
-                log.debug("Adding argument " + key + " " + capabilitiesMap.get(key));
+                log.fine("Adding argument " + key + " " + capabilitiesMap.get(key));
                 arguments.add(capabilitiesMap.get(key));
             }
             if (headlessMatcher.find()) {
-                log.debug("Setting headless to " + key + " " + capabilitiesMap.get(key));
+                log.fine("Setting headless to " + key + " " + capabilitiesMap.get(key));
                 setHeadless(Boolean.parseBoolean(capabilitiesMap.get(key)));
             }
             if(remoteMatcher.find()) {
                 isRemote = true;
                 remoteHub = capabilitiesMap.get(key);
-                log.debug("Setting remote hub to " + key + " " + remoteHub);
+                log.fine("Setting remote hub to " + key + " " + remoteHub);
             }
         });
     }
@@ -78,7 +78,7 @@ public class CapabilitiesReader {
     public String getArgumentString(List<String> argumentList) {
         StringBuilder argumentString = new StringBuilder();
         argumentList.forEach(argument -> argumentString.append(" ").append(argument));
-        log.debug("Argument String: \"" + argumentString.toString());
+        log.fine("Argument String: \"" + argumentString.toString());
         return argumentString.toString();
     }
 

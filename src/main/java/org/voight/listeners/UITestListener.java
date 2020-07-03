@@ -9,16 +9,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.log4testng.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 public class UITestListener extends TestListener {
     private static final String BROWSER = "browser";
-    private Logger log = Logger.getLogger(UITestListener.class);
+    private Logger log = Logger.getLogger("UITestListener.class");
 
     public UITestListener() {
         super();
@@ -50,9 +50,9 @@ public class UITestListener extends TestListener {
             FileUtils.copyFile(scrFile, destFile);
             Reporter.log("<a href='" + destFile.getAbsolutePath() + "'> <img src='" + destFile.getAbsolutePath() + "' height='100' width='100'/> </a>");
         } catch (IOException e) {
-           log.fatal("Unable to write screenshot.", e);
+           log.severe(e.getMessage());
         }
-        log.error(iTestResult.getName() + " failed.");
+        log.severe(iTestResult.getName() + " failed.");
     }
 
     /**
