@@ -1,6 +1,8 @@
 package org.voight.listeners;
 
 import org.junit.runner.Description;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
 import java.util.logging.Logger;
@@ -13,6 +15,31 @@ public class TestListener extends RunListener {
         // By default, this is dumb simple. Just do nothing but log things.
         // If you like, you can extend this to be something like
         // JiraRequirementsReportingListener
+    }
+
+    @Override
+    public void testRunFinished(Result result) throws Exception {
+        super.testRunFinished(result);
+    }
+
+    @Override
+    public void testSuiteStarted(Description description) throws Exception {
+        super.testSuiteStarted(description);
+    }
+
+    @Override
+    public void testSuiteFinished(Description description) throws Exception {
+        super.testSuiteFinished(description);
+    }
+
+    @Override
+    public void testFailure(Failure failure) throws Exception {
+        super.testFailure(failure);
+    }
+
+    @Override
+    public void testAssumptionFailure(Failure failure) {
+        super.testAssumptionFailure(failure);
     }
 
     /**

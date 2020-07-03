@@ -10,7 +10,6 @@
         </run>
     </groups>
     <listeners>
-        <listener class-name="org.voight.listeners.SuiteListener"/>
         <listener class-name="org.voight.listeners.UITestListener"/>
     </listeners>
     <test name="Devices">
