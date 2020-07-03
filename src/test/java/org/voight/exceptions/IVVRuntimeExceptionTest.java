@@ -1,11 +1,10 @@
 package org.voight.exceptions;
 
-import org.testng.annotations.Test;
-
+import org.junit.Test;
 
 public class IVVRuntimeExceptionTest {
 
-    @Test(expectedExceptions = RuntimeException.class)
+    @Test(expected = RuntimeException.class)
     public void testIVVRuntimeExceptionTest(){
         throw new IVVRuntimeException("This message");
     }

@@ -1,13 +1,11 @@
 package org.voight.listeners;
 
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import org.testng.Reporter;
+import org.junit.runner.Description;
+import org.junit.runner.notification.RunListener;
 
 import java.util.logging.Logger;
 
-public class TestListener implements ITestListener {
+public class TestListener extends RunListener {
     private Logger log = Logger.getLogger("TestListener.class");
 
 
@@ -34,9 +32,8 @@ public class TestListener implements ITestListener {
      * @param iTestResult
      */
     @Override
-    public void onTestStart(ITestResult iTestResult) {
-        // Retrieve Previous Results and spit them out into the log. Stash them.
-        log.info(iTestResult.getName() + " starting.");
+    public void testRunStarted(Description description) throws Exception {
+        super.testRunStarted(description);
     }
 
     /**
@@ -45,8 +42,8 @@ public class TestListener implements ITestListener {
      * @param iTestResult
      */
     @Override
-    public void onTestSuccess(ITestResult iTestResult) {
-        log.info(iTestResult.getName() + " was successful.");
+    public void testFinished(Description description) {
+        log.info(description.getMethodName()+ " was successful.");
     }
 
     /**
@@ -54,11 +51,8 @@ public class TestListener implements ITestListener {
      *
      * @param iTestResult
      */
-    @Override
-    public void onTestFailure(ITestResult iTestResult) {
-        // Could collect environment variables and whatnot to report to see what else might be wrong
-        log.info(iTestResult.getName() + " failed.");
-    }
+
+
 
     /**
      * This is where you would publish the results.
@@ -66,37 +60,33 @@ public class TestListener implements ITestListener {
      * @param iTestResult
      */
     @Override
-    public void onTestSkipped(ITestResult iTestResult) {
-        log.info(iTestResult.getName() + " was skipped.");
+    public void testIgnored(Description description) {
+        log.info(description.getMethodName() + " was skipped.");
     }
 
-    /**
-     * For one, how dare you. For two,
-     * This is where you would publish the results.
-     *
-     * @param iTestResult
-     */
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-        Reporter.log("How dare you.", true);
-        log.info("How dare you.");
-    }
+//    /**
+//     * For one, how dare you. For two,
+//     * This is where you would publish the results.
+//     *
+//     * @param iTestResult
+//     */
+//    @Override
+//    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+//        Reporter.log("How dare you.", true);
+//        log.info("How dare you.");
+//    }
 
     @Override
-    public void onStart(ITestContext iTestContext) {
-        String[] excludedGroups = iTestContext.getExcludedGroups();
-        for (String excludedGroup : excludedGroups) {
-            log.info(excludedGroup + " was excluded.");
-        }
-        String[] includedGroups = iTestContext.getIncludedGroups();
-        for (String includedGroup : includedGroups) {
-            log.info(includedGroup + " was included.");
-        }
-        log.info(iTestContext.getSuite().getName() + " - " + iTestContext.getName() + " starting.");
+    public void testStarted(Description description) {
+//        String[] excludedGroups = iTestContext.getExcludedGroups();
+//        for (String excludedGroup : excludedGroups) {
+//            log.info(excludedGroup + " was excluded.");
+//        }
+//        String[] includedGroups = iTestContext.getIncludedGroups();
+//        for (String includedGroup : includedGroups) {
+//            log.info(includedGroup + " was included.");
+//        }
+        log.info(description.getTestClass().getName() + " - " + description.getDisplayName() + " starting.");
     }
 
-    @Override
-    public void onFinish(ITestContext iTestContext) {
-        log.info(iTestContext.getName() + " finishing.");
-    }
 }

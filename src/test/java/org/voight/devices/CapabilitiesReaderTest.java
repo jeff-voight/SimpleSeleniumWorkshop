@@ -1,11 +1,9 @@
 package org.voight.devices;
 
+import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.Test;
-
 import java.util.List;
-
-import static org.testng.Assert.*;
+import static org.junit.Assert.*;
 
 
 public class CapabilitiesReaderTest {
