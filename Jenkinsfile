@@ -8,7 +8,7 @@ podTemplate(label: 'maven', containers: [
                     checkout([$class: 'GitSCM',
                               branches: [[name: scm.branches]],
                               doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-                              extensions: scm.extensions + [[$class: 'PreBuildMerge', options: [mergeTarget: mergeTarget, mergeRemote: 'origin']]],
+                              extensions: scm.extensions + [[$class: 'PreBuildMerge', options: [mergeTarget: 'master', mergeRemote: 'origin']]],
                               submoduleCfg: [],
                               userRemoteConfigs: scm.userRemoteConfigs
                               ])
