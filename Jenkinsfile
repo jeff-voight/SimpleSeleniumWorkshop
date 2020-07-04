@@ -11,7 +11,7 @@ podTemplate(label: 'maven', containers: [
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
                         sh ("mvn verify sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                         junit 'target/surefire-reports/junitreports/*.xml'
-                        archiveArtifacts artifacts: 'target/surefire-reports/**/*', followSymlinks: false
+                        archiveArtifacts artifacts: 'target/surefire-reports/**/*,target/cucumber-html-reports/**/*', followSymlinks: false
                     }
                 }
             }
