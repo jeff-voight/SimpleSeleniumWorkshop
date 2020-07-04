@@ -2,9 +2,9 @@ podTemplate(label: 'maven', containers: [
         containerTemplate(name: 'maven', image: 'maven:3.6.3-jdk-8', ttyEnabled: true, command: 'cat')
 ]) {
     node('maven') {
-        stage('Maven') {
+        stage('Container') {
             container('maven') {
-                stage("git clone") {
+                stage("Clone") {
                     checkout([$class                           : 'GitSCM',
                               branches                         : scm.branches,
                               doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
