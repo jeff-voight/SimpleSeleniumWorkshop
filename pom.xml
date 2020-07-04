@@ -49,6 +49,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version>
                 <configuration>
+                    <!-- Ignore failures here because masterthought won't run -->
                     <testFailureIgnore>true</testFailureIgnore>
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <parallel>classesAndMethods</parallel>
