@@ -4,6 +4,8 @@ Feature: Google Search Demonstration
   I want to search google.com for recipes
   so that I can cook meals for my friends and family
   
+  Background:
+    Given I am using the firefox browser
 
   @search
   Scenario Outline: Simple Bing Search

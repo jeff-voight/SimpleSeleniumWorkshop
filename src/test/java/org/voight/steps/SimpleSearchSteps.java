@@ -37,11 +37,13 @@ public class SimpleSearchSteps {
     WebDriverWait wait;
 
     public SimpleSearchSteps() {
-        log.info("Creating Browser.");
-        driver = DeviceFactory.getDevice("Firefox");
-        wait = new WebDriverWait(driver, timeOut);
     }
 
+    @Given("^I am using the (.*) browser$")
+    public void getBrowser(String browser){
+        driver = DeviceFactory.getDevice(browser);
+        wait = new WebDriverWait(driver, timeOut);
+    }
     @After
     public void tearDown(Scenario scenario) {
         log.error("SCENARIO TEARDOWN");
