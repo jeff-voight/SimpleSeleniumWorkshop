@@ -1,23 +1,25 @@
 package org.voight.steps;
 
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.*;
+import org.slf4j.LoggerFactory;
 import org.voight.devices.DeviceFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.nio.Buffer;
 import java.util.List;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
 
 public class SimpleSearchSteps {
 
-    Logger log = Logger.getLogger("SimpleSearchSteps.class");
+    Logger log = LoggerFactory.getLogger(SimpleSearchSteps.class);
     long timeOut = (long) 5.0;
 
     By googleIconBy = By.id("hplogo");
@@ -35,14 +37,22 @@ public class SimpleSearchSteps {
     WebDriverWait wait;
 
     public SimpleSearchSteps() {
-        log.fine("Creating Chrome Browser.");
+        log.info("Creating Browser.");
         driver = DeviceFactory.getDevice("Firefox");
         wait = new WebDriverWait(driver, timeOut);
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario) {
+        log.error("SCENARIO TEARDOWN");
+        if (scenario.isFailed()) {
+            byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", scenario.getName() + "." + scenario.getLine() + ".png");
+        }
         driver.quit();
+        if (scenario.isFailed()) {
+            Assert.fail("Scenario failed. See the screenshot below.");
+        }
     }
 
     @Given("^I visit google\\.com$")
@@ -52,11 +62,10 @@ public class SimpleSearchSteps {
     }
 
     @When("^I search google for (.*)$")
-    public void i_search_for(String term){
+    public void i_search_for(String term) {
         WebElement searchField = driver.findElement(searchGoogleBy);
         searchField.sendKeys(term);
         WebElement submitButton = driver.findElement(submitGoogleBy);
-        submitButton.isDisplayed();
         submitButton.click();
     }
 
@@ -65,8 +74,8 @@ public class SimpleSearchSteps {
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(googleLogoBy));
         List<WebElement> elements = driver.findElements(googlePagesBy);
-        log.fine("There are " + elements.size() + " (hopefully 1) elements matching page 2");
-        Assert.assertTrue(elements.size() == 1);
+        log.info("There are " + elements.size() + " (hopefully 1) elements matching page 2");
+        Assert.assertEquals(1, elements.size());
     }
 
     @Given("^I visit bing\\.com$")
@@ -74,17 +83,15 @@ public class SimpleSearchSteps {
         driver.get("https://www.bing.com");
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(bingIconBy));
-
     }
 
     @When("^I search bing for (.*)$")
-    public void i_search_bing_for(String term){
+    public void i_search_bing_for(String term) {
         WebElement searchField = driver.findElement(searchBingBy);
-        searchField.sendKeys(term);
         WebElement submitButton = driver.findElement(submitBingBy);
-        submitButton.isDisplayed();
+        Assert.assertTrue(submitButton.isDisplayed());
+        searchField.sendKeys(term);
         submitButton.click();
-
     }
 
     @Then("^bing retrieves more than one page of (.*)$")
@@ -92,7 +99,7 @@ public class SimpleSearchSteps {
         WebDriverWait wait = new WebDriverWait(driver, timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(bingLogoBy));
         List<WebElement> elements = driver.findElements(bingPagesBy);
-        log.fine("There are " + elements.size() + " (hopefully 1) elements matching page 2");
+        log.info("There are " + elements.size() + " (hopefully 1) elements matching page 2");
         Assert.assertTrue(elements.size() == 1);
     }
 

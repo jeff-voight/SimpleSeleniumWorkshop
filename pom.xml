@@ -2,13 +2,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.voight</groupId>
     <artifactId>TestingWorkshop</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <packaging>jar</packaging>
-
     <name>Voight Simple Testing Workshop</name>
     <description>This project is a simple demonstration of Selenium in a Jenkins pipeline.
     This is an example of a website testing package that would run against candidate
@@ -17,7 +14,6 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <!-- SonarQube Properties -->
         <sonar.exclusions></sonar.exclusions>
         <sonar.host.url></sonar.host.url>
@@ -32,7 +28,6 @@
 
     <build>
         <plugins>
-
             <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -54,12 +49,55 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
                     <useSystemClassLoader>false</useSystemClassLoader>
-                    <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
+                    <parallel>classesAndMethods</parallel>
+                    <threadCount>6</threadCount>
+                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.3.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Simple Selenium Testing Workshop</projectName>
+                            <!-- optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified -->
+                            <skip>false</skip>
+                            <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+                            <inputDirectory>${project.build.directory}/cucumber/</inputDirectory>
+                            <jsonFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+<!--                            <classificationDirectory>${project.build.directory}/classifications</classificationDirectory>-->
+<!--                            <classificationFiles>-->
+<!--                                &lt;!&ndash; supports wildcard or name pattern &ndash;&gt;-->
+<!--                                <param>sample.properties</param>-->
+<!--                                <param>other.properties</param>-->
+<!--                            </classificationFiles>-->
+                            <parallelTesting>true</parallelTesting>
+                            <!-- optional, set true to group features by its Ids -->
+                            <mergeFeaturesById>false</mergeFeaturesById>
+                            <!-- optional, set true to get a final report with latest results of the same test from different test runs -->
+                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+                            <!-- optional, set true to fail build on test failures -->
+                            <checkBuildResult>true</checkBuildResult>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Generate Parallel Cucumber -->
 
             <!-- Cucumber Tests -->
@@ -173,10 +211,16 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>6.1.1</version>
+            <version>6.1.2</version>
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+        </dependency>
 
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -190,6 +234,12 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>de.monochromata.cucumber</groupId>-->
+<!--            <artifactId>reporting-plugin</artifactId>-->
+<!--            <version>4.0.60</version>-->
+<!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
         <dependency>
@@ -254,13 +304,6 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
         </dependency>
 
     </dependencies>
