@@ -22,7 +22,7 @@
         <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
         <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
         <sonar.coverage.exclusions></sonar.coverage.exclusions>
-        <sonar.junit.reportPaths>target/surefire-reports/junitreports,target/failsafe-reports/junitreports</sonar.junit.reportPaths>
+        <sonar.junit.reportPaths>target/surefire-reports/,target/failsafe-reports/</sonar.junit.reportPaths>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco-ut/jacoco.xml,target/site/jacoco-it/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
