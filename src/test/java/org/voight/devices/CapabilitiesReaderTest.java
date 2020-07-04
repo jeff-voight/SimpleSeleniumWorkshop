@@ -21,7 +21,7 @@ public class CapabilitiesReaderTest {
     public void testGetCapabilities() {
         CapabilitiesReader c = new CapabilitiesReader("chrome");
         DesiredCapabilities capabilities = c.getCapabilities();
-        assertEquals(capabilities.getCapability("maxDuration"), "100800");
+        assertEquals(capabilities.getCapability("maxDuration"), "10800");
 
     }
 

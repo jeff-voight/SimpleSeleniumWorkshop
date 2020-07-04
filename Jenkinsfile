@@ -10,8 +10,8 @@ podTemplate(label: 'maven', containers: [
                 stage('Build maven project') {
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
                         sh ("mvn verify sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
-                        junit 'target/failsafe-reports/junitreports/*.xml,target/surefire-reports/junitreports/*.xml'
-                        archiveArtifacts artifacts: 'target/failsafe-reports/**/*,target/surefire-reports/**/*', followSymlinks: false
+                        junit 'target/surefire-reports/junitreports/*.xml'
+                        archiveArtifacts artifacts: 'target/surefire-reports/**/*', followSymlinks: false
                     }
                 }
             }
