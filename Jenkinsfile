@@ -5,7 +5,7 @@ podTemplate(label: 'maven', containers: [
         stage('Maven') {
             container('maven') {
                 stage("git clone") {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/jvoight0205/SimpleSeleniumWorkshop.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: "$env.CHANGE_BRANCH"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/jvoight0205/SimpleSeleniumWorkshop.git']]])
                 }
                 stage('Build project') {
                     sh("mvn compile")
