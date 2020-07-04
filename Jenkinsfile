@@ -2,7 +2,7 @@ podTemplate(label: 'maven', containers: [
         containerTemplate(name: 'maven', image: 'maven:3.6.3-jdk-8', ttyEnabled: true, command: 'cat')
 ]) {
     node('maven') {
-        stage('Build') {
+        stage('Maven') {
             container('maven') {
                 stage("git clone") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/jvoight0205/SimpleSeleniumWorkshop.git']]])
@@ -19,7 +19,7 @@ podTemplate(label: 'maven', containers: [
 
                     }
                 stage('archive') {
-                    junit 'target/surefire-reports/*'
+                    junit 'target/surefire-reports/*.xml'
                     archiveArtifacts artifacts: 'target/surefire-reports/*,target/cucumber-html-reports/**/*', followSymlinks: false
                 }
             }
