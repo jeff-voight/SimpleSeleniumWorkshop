@@ -6,9 +6,9 @@ podTemplate(label: 'maven', containers: [
             container('maven') {
                 stage("git clone") {
                     checkout([$class: 'GitSCM',
-                              branches: [[name: scm.branches]],
+                              branches: scm.branches,
                               doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
-                              extensions: scm.extensions + [[$class: 'PreBuildMerge', options: [mergeTarget: 'master', mergeRemote: 'origin']]],
+                              extensions: scm.extensions,
                               submoduleCfg: [],
                               userRemoteConfigs: scm.userRemoteConfigs
                               ])
