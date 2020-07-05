@@ -24,11 +24,9 @@ podTemplate(label: 'maven', containers: [
                         sh("mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
                 }
-                post('archive') {
-                    always {
-                        junit 'target/surefire-reports/*.xml'
-                        archiveArtifacts artifacts: 'target/surefire-reports/*,target/cucumber-html-reports/**/*', followSymlinks: false
-                    }
+                stage('archive') {
+                    junit 'target/surefire-reports/*.xml'
+                    archiveArtifacts artifacts: 'target/surefire-reports/*,target/cucumber-html-reports/**/*', followSymlinks: false
                 }
             }
         }
