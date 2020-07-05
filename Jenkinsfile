@@ -14,16 +14,16 @@ podTemplate(label: 'maven', containers: [
                     ])
                 }
                 stage('Build project') {
-                    gitHubPRStatus status: githubPRMessage('building')
+                    gitHubPRStatus statusMessage: githubPRMessage('building')
                     sh("mvn compile")
                 }
                 stage('Test project') {
-                    gitHubPRStatus status: githubPRMessage('testing')
+                    gitHubPRStatus statusMessage: githubPRMessage('testing')
                     sh("mvn verify")
-                    githubPRAddLabels content: githubPRMessage('passed')
+                    githubPRAddLabels labelProperty: githubPRLabel('passed')
                 }
                 stage('lint') {
-                    gitHubPRStatus status: githubPRMessage('linting')
+                    gitHubPRStatus statusMessage: githubPRMessage('linting')
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
                         sh("mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
