@@ -20,7 +20,7 @@ podTemplate(label: 'maven', containers: [
                 stage('Test project') {
                     gitHubPRStatus status: githubPRMessage('testing')
                     sh("mvn verify")
-                    gitHubPRAddLabels 'passed'
+                    githubPRAddLabels content: githubPRMessage('passed')
                 }
                 stage('lint') {
                     gitHubPRStatus status: githubPRMessage('linting')
