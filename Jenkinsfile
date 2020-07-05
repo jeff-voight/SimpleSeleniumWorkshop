@@ -14,16 +14,19 @@ podTemplate(label: 'maven', containers: [
                     ])
                 }
                 stage('Build project') {
-                    gitHubPRStatus githubPRMessage('${GITHUB_PR_COND_REF} compile started')
+                    githubPRAddLabels labelProperty: labels('pending')
                     sh("mvn compile")
+                    githubPRStatusPublisher buildMessage: message(failureMsg: githubPRMessage('Can\'t set status; build failed.'),
+                            successMsg: githubPRMessage('Can\'t set status; build succeeded.')),
+                            statusMsg: githubPRMessage('${GITHUB_PR_COND_REF} run ended'),
+                            statusVerifier: allowRunOnStatus('SUCCESS'),
+                            unstableAs: 'FAILURE'
                 }
                 stage('Test project') {
-                    gitHubPRStatus githubPRMessage('${GITHUB_PR_COND_REF} testing started')
                     sh("mvn verify")
                     githubPRAddLabels labelProperty: labels('passed'), statusVerifier: allowRunOnStatus('SUCCESS')
                 }
                 stage('lint') {
-                    gitHubPRStatus githubPRMessage('${GITHUB_PR_COND_REF} lint started')
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
                         sh("mvn sonar:sonar -Dsonar.host.url=$SONAR_HOST -Dsonar.login=$SONAR_LOGIN")
                     }
