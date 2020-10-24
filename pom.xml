@@ -17,7 +17,7 @@
         <!-- SonarQube Properties -->
         <sonar.exclusions></sonar.exclusions>
         <sonar.host.url></sonar.host.url>
-        <sonar.login>a6bd0fe1210316aeeee742426853b38529104128</sonar.login>
+        <sonar.login>aa859aa99d66f4e5b80e745766fce1b68f1aae4e</sonar.login>
         <sonar.projectKey>SimpleSeleniumWorkshop</sonar.projectKey>
         <sonar.java.source>1.8</sonar.java.source>
         <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
