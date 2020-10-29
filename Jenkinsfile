@@ -15,10 +15,17 @@ podTemplate(label: 'maven', containers: [
                     ])
                 }
                 stage('Build project') {
+                    githubPRAddLabels labelProperty: labels('pending')
                     sh("mvn compile")
+                    githubPRStatusPublisher buildMessage: message(failureMsg: githubPRMessage('Can\'t set status; build failed.'),
+                            successMsg: githubPRMessage('Can\'t set status; build succeeded.')),
+                            statusMsg: githubPRMessage('${GITHUB_PR_COND_REF} run ended'),
+                            statusVerifier: allowRunOnStatus('SUCCESS'),
+                            unstableAs: 'FAILURE'
                 }
                 stage('Test project') {
                     sh("mvn verify")
+                    githubPRAddLabels labelProperty: labels('passed'), statusVerifier: allowRunOnStatus('SUCCESS')
                 }
                 stage('lint') {
                     withCredentials([string(credentialsId: 'sonartoken', variable: 'SONAR_LOGIN'), string(credentialsId: 'sonarhost', variable: 'SONAR_HOST')]) {
