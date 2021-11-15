@@ -9,7 +9,7 @@ podTemplate(label: labelMVN,
                 command: 'cat'),
         containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent:latest-jdk11', args: '${computer.jnlpmac} ${computer.name}')
         ]) {
-    node('maven') {
+    node(labelMVN) {
         stage('Container') {
             container('maven') {
                 stage("Clone") {
