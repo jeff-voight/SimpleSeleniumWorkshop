@@ -1,6 +1,12 @@
-podTemplate(label: 'maven', containers: [
-        containerTemplate(name: 'maven', image: 'maven:3.6.3-jdk-8', ttyEnabled: true, command: 'cat')
-]) {
+podTemplate(label: labelMVN,
+        containers: [
+        containerTemplate(name: 'maven',
+                image: 'voight/mvn-jdk-1.8:1.6',
+                ttyEnabled: true,
+                alwaysPullImage: true,
+                command: 'cat'),
+        containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent:latest-jdk11', args: '${computer.jnlpmac} ${computer.name}')
+        ]) {
     node('maven') {
         stage('Container') {
             container('maven') {
