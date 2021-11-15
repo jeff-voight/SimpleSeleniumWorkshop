@@ -1,3 +1,5 @@
+GString labelMVN = "selenium-workshop-build-${UUID.randomUUID().toString()}"
+
 podTemplate(label: labelMVN,
         containers: [
         containerTemplate(name: 'maven',
