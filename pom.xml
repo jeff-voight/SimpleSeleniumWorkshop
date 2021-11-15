@@ -17,8 +17,8 @@
         <!-- SonarQube Properties -->
         <sonar.exclusions></sonar.exclusions>
         <sonar.host.url></sonar.host.url>
-        <sonar.login>aa859aa99d66f4e5b80e745766fce1b68f1aae4e</sonar.login>
-        <sonar.projectKey>SimpleSeleniumWorkshop</sonar.projectKey>
+        <sonar.login>8bd17b978620b3545a12163c3ac5ed9c5becee52</sonar.login>
+        <sonar.projectKey>aa859aa99d66f4e5b80e745766fce1b68f1aae4e</sonar.projectKey>
         <sonar.java.source>1.8</sonar.java.source>
         <sonar.sources>pom.xml,src/main/java,src/main/resources</sonar.sources>
         <sonar.tests>src/test/java,src/test/resources/org</sonar.tests>
@@ -56,6 +56,12 @@
                     <parallel>classesAndMethods</parallel>
                     <threadCount>6</threadCount>
                     <rerunFailingTestsCount>2</rerunFailingTestsCount>
+                    <properties>
+                        <property>
+                            <name>surefire.testng.verbose</name>
+                            <value>8</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
 
